@@ -13,6 +13,7 @@ mkdir -p "$BUILD"
 (
   echo "is_debug = $IS_DEBUG"
   echo "pdf_is_standalone = true"
+  echo "pdf_use_partition_alloc = false"
   echo "target_cpu = \"$TARGET_CPU\""
   echo "target_os = \"$OS\""
   echo "pdf_enable_v8 = $ENABLE_V8"
@@ -26,20 +27,25 @@ mkdir -p "$BUILD"
   fi
 
   case "$OS" in
+    android)
+      echo "clang_use_chrome_plugins = false"
+      echo "default_min_sdk_version = 21"
+      ;;
     ios)
       echo "ios_enable_code_signing = false"
       echo "use_blink = true"
       [ "$ENABLE_V8" == "true" ] && [ "$TARGET_CPU" == "arm64" ] && echo 'arm_control_flow_integrity = "none"'
+      echo "clang_use_chrome_plugins = false"
       ;;
     linux)
-      echo 'use_allocator_shim = false'
+      echo "clang_use_chrome_plugins = false"
       ;;
     mac)
       echo 'mac_deployment_target = "10.13.0"'
+      echo "clang_use_chrome_plugins = false"
       ;;
     wasm)
       echo 'pdf_is_complete_lib = true'
-      echo 'pdf_use_partition_alloc = false'
       echo 'is_clang = false'
       ;;
   esac
@@ -49,7 +55,17 @@ mkdir -p "$BUILD"
       echo 'is_musl = true'
       echo 'is_clang = false'
       echo 'use_custom_libcxx = false'
-      [ "$ENABLE_V8" == "true" ] && echo "v8_snapshot_toolchain = \"//build/toolchain/linux:$TARGET_CPU\""
+      [ "$ENABLE_V8" == "true" ] && case "$TARGET_CPU" in
+        arm)
+            echo "v8_snapshot_toolchain = \"//build/toolchain/linux:clang_x86_v8_arm\""
+            ;;
+        arm64)
+            echo "v8_snapshot_toolchain = \"//build/toolchain/linux:clang_x64_v8_arm64\""
+            ;;
+        *)
+            echo "v8_snapshot_toolchain = \"//build/toolchain/linux:$TARGET_CPU\""
+            ;;
+      esac
       ;;
   esac
 

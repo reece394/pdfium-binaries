@@ -32,7 +32,7 @@ mkdir -p "$BUILD"
       [ "$ENABLE_V8" == "true" ] && [ "$TARGET_CPU" == "arm64" ] && echo 'arm_control_flow_integrity = "none"'
       ;;
     linux)
-      echo 'use_allocator_shim = false'
+      echo 'pdf_use_partition_alloc = false'
       ;;
     mac)
       echo 'use_allocator_shim = false'

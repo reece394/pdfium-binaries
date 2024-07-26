@@ -1,5 +1,7 @@
 name: Build all
 
+ERROR
+
 on:
   workflow_dispatch:
     inputs:

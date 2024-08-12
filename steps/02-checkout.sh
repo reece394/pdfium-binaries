@@ -13,6 +13,7 @@ fi
 
 # Clone
 gclient
+python3 --version
 gclient config --unmanaged "$PDFium_URL" "${CONFIG_ARGS[@]-}"
 echo "target_os = [ '$OS' ]" >> .gclient
 

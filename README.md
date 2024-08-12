@@ -9,7 +9,7 @@
 
 [![Latest release](https://img.shields.io/github/v/release/bblanchon/pdfium-binaries?display_name=release&label=github)](https://github.com/bblanchon/pdfium-binaries/releases/latest/)
 [![Nuget](https://img.shields.io/nuget/v/bblanchon.PDFium)](https://www.nuget.org/packages/bblanchon.PDFium/)
-![Conda](https://img.shields.io/conda/v/bblanchon/pdfium-binaries?label=conda)
+[![Conda](https://img.shields.io/conda/v/bblanchon/pdfium-binaries?label=conda)](https://anaconda.org/bblanchon/pdfium-binaries)
 
 
 This project hosts pre-compiled binaries of the [PDFium library](https://pdfium.googlesource.com/pdfium/), an open-source library for PDF manipulation and rendering.
@@ -87,7 +87,12 @@ Here are the download links for latest release:
   </tr>
 
   <tr>
-    <td rowspan="2">Linux<br>musl</td>
+    <td rowspan="3">Linux<br>musl</td>
+    <td>arm64</td>
+    <td><a href="https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-musl-arm64.tgz">pdfium-linux-musl-arm64.tgz</a></td>
+    <td><a href="https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-v8-linux-musl-arm64.tgz">pdfium-v8-linux-musl-arm64.tgz</a></td>
+  </tr>
+  <tr>
     <td>x64</td>
     <td><a href="https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-musl-x64.tgz">pdfium-linux-musl-x64.tgz</a></td>
     <td><a href="https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-v8-linux-musl-x64.tgz">pdfium-v8-linux-musl-x64.tgz</a></td>
@@ -241,6 +246,7 @@ The following projects use (or recommend using) our PDFium builds:
 | [PDFtoZPL][pdftozpl]     | C#       | A .NET library to convert PDF files (and bitmaps) into Zebra Programming Language code                      |
 | [PDFx][pdfx]             | Dart     | Flutter Render & show PDF documents on Web, MacOs 10.11+, Android 5.0+, iOS and Windows                     |
 | [PyPDFium2][pypdfium2]   | Python   | Python bindings to PDFium                                                                                   |
+| [Spacedrive][spacedrive] | Rust/TS  | Cross-platform file manager, powered by a virtual distributed filesystem                                    |
 | [wxPDFView][wxpdfview]   | C++      | wxWidgets components to display PDF content                                                                 |
 
 *Did we miss a project? Please open a PR!*  
@@ -312,3 +318,4 @@ The following projects use (or recommend using) our PDFium builds:
 [pdflibcore]: https://github.com/jbaarssen/PdfLibCore
 [dtronixpdf]: https://github.com/Dtronix/DtronixPdf
 [pdftozpl]: https://github.com/sungaila/PDFtoZPL
+[spacedrive]: https://github.com/spacedriveapp/spacedrive

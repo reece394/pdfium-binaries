@@ -20,6 +20,9 @@ echo "$DepotTools_DIR" >> "$PATH_FILE"
 
 case "$TARGET_OS" in
   android)
+    sudo apt-get update
+    sudo apt-get install -y unzip
+
     # pdfium installs its version of the NDK, but we need one for compiling the example
     ANDROID_NDK_VERSION="r25c"
     ANDROID_NDK_FOLDER="android-ndk-$ANDROID_NDK_VERSION"
@@ -49,6 +52,16 @@ case "$TARGET_OS" in
           MUSL_VERSION="x86_64-linux-musl-cross"
           PACKAGES="g++-10"
           ;;
+
+        arm)
+          MUSL_VERSION="arm-linux-musleabihf-cross"
+          PACKAGES="g++-10"
+          ;;
+
+        arm64)
+          MUSL_VERSION="aarch64-linux-musl-cross"
+          PACKAGES="g++-10"
+          ;;
       esac
 
       [ -d "$MUSL_VERSION" ] || curl -L "$MUSL_URL/$MUSL_VERSION.tgz" | tar xz
@@ -62,11 +75,11 @@ case "$TARGET_OS" in
 
       case "$TARGET_CPU" in
         arm)
-          sudo apt-get install -y libc6-i386 gcc-9-multilib g++-9-arm-linux-gnueabihf gcc-9-arm-linux-gnueabihf
+          sudo apt-get install -y libc6-i386 gcc-10-multilib g++-10-arm-linux-gnueabihf gcc-10-arm-linux-gnueabihf
           ;;
 
         arm64)
-          sudo apt-get install -y libc6-i386 gcc-9-multilib g++-9-aarch64-linux-gnu gcc-9-aarch64-linux-gnu
+          sudo apt-get install -y libc6-i386 gcc-10-multilib g++-10-aarch64-linux-gnu gcc-10-aarch64-linux-gnu
           ;;
 
         x86)
@@ -88,8 +101,8 @@ case "$TARGET_OS" in
       git clone https://github.com/emscripten-core/emsdk.git
     fi
     pushd emsdk
-    ./emsdk install 3.1.34
-    ./emsdk activate 3.1.34
+    ./emsdk install ${EMSDK_VERSION:-3.1.34}
+    ./emsdk activate ${EMSDK_VERSION:-3.1.34}
     echo "$PWD/upstream/emscripten" >> "$PATH_FILE"
     echo "$PWD/upstream/bin" >> "$PATH_FILE"
     popd

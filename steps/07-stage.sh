@@ -46,7 +46,7 @@ case "$OS" in
     mv "$BUILD/pdfium.dll.lib" "$STAGING_LIB"
     mkdir -p "$STAGING_BIN"
     mv "$BUILD/pdfium.dll" "$STAGING_BIN"
-    [ "$IS_DEBUG" == "true" ] && mv "$BUILD/pdfium.dll.pdb" "$STAGING_BIN"
+    mv "$BUILD/pdfium.dll.pdb" "$STAGING_BIN"
     ;;
 esac
 

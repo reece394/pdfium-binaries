@@ -12,6 +12,8 @@ if [ "$ENABLE_V8" == "false" ]; then
 fi
 
 # Clone
+gclient 
+python3 --version
 gclient config --unmanaged "$PDFium_URL" "${CONFIG_ARGS[@]-}"
 echo "target_os = [ '$OS' ]" >> .gclient
 
@@ -24,4 +26,4 @@ for FOLDER in pdfium pdfium/build pdfium/third_party/libjpeg_turbo pdfium/base/a
   fi
 done
 
-gclient sync -r "origin/${PDFium_BRANCH:-main}" --no-history --shallow
+gclient sync -r "origin/chromium/6043" --no-history --shallow

@@ -35,7 +35,7 @@ case "$OS" in
     git -C build apply -v "$PATCHES/win/build.patch"
 
     VERSION=${PDFium_VERSION:-0.0.0.0}
-    YEAR=$(date +%Y)
+    YEAR="2023"
     VERSION_CSV=${VERSION//./,}
     export YEAR VERSION VERSION_CSV
     envsubst < "$PATCHES/win/resources.rc" > "resources.rc"

@@ -14,6 +14,9 @@ WindowsSDK_DIR="/c/Program Files (x86)/Windows Kits/10/bin/10.0.19041.0"
 # Download depot_tools if not exists in this location
 if [ ! -d "$DepotTools_DIR" ]; then
   git clone "$DepotTools_URL" "$DepotTools_DIR"
+  cd "$DepotTools_DIR"
+  git reset --hard 90a30a5b5357636fa05bb315c393275be7ca705c
+  rm -rf .git
 fi
 
 echo "$DepotTools_DIR" >> "$PATH_FILE"
